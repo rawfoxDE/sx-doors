@@ -1,0 +1,147 @@
+[0m[31m[40m
+Communication with MCP is available through standard EXEC-MESSAGES.
+
+The structure of the message is (you must allocate it)
+
+struct MCPMessage
+{
+        struct Message Msg;
+        UWORD command;
+        UWORD nodenum;
+        long data1;
+        long data2;
+        long data3;
+        long data4;
+        long data5;
+        long data6;
+};
+
+UWORD's are 16-bit
+long's are 32-bit
+
+
+If anything but an actual node wants to use this port, you must make
+nodenum equal 0 (zero) (that includes doors!).
+
+
+.------------------------.
+| MCP Commands Available |
+`------------------------'
+
+        Note: Commands 1 to 5 are PRIVATE!!
+
+
+        6 - MENU POINTER
+
+                Ask MCP to give you a pointer to a menu structure
+
+                themsg.command = 6
+                themsg.data1   = pointer to the menu you want
+                                        eg: "Main_Menu"
+
+                returns
+
+                themsg.data2   = the pointer you wanted
+                themsg.data3   = size of the struct in bytes
+
+
+
+        8 - MD5 ENCRYPTION
+
+                This will ask MCP to encrypt a string for you, using MD5.
+
+                themsg.command = 8
+                themsg.data1   = pointer to the string to encrypt
+                themsg.data2   = pointer to 16 bytes to put the result in
+
+
+        10 - QUERY SYSOP
+
+                Find out if the sysop is available
+
+                themsg.command = 10
+
+                returns
+
+                themsg.data1   = pointer to the reason for being away
+                                (if NULL, the sysop is available)
+
+
+        12 - APPEND TO A FILE
+
+                themsg.command = 12
+                themsg.data1   = pointer to the filename string
+                themsg.data2   = pointer to the buffer to append
+                themsg.data3   = size of the append buffer
+
+
+        14 - GET A POINTER TO THE NODE INFORMATION CHAIN
+
+                themsg.command = 14
+
+                returns
+
+                themsg.data1   = the pointer to node 1's structure
+                                (use the NEXT field to browse through)
+
+                the struct is as follows
+
+                struct node_struct
+                {                                       /* offset DEC   */
+                        APTR next;                      /*      0       */
+                        struct UserData *User;          /*      4       */
+                        struct UserIndexStruct *UserIndex;/*    8       */
+                        struct SXUserStruct *SXUser;    /*      12      */
+                        char *action;                   /*      16      */
+                        char *filename;                 /*      20      */
+                        long baud;                      /*      24      */
+                        long loginsecs;                 /*      28      */
+                        UWORD number;                   /*      32      */
+                        UBYTE actionnumber;             /*      34      */
+                        UBYTE active;                   /*      35      */
+                        UBYTE useron;                   /*      36      */
+                        UBYTE misc;                     /*      37      */
+                };
+
+.--------------------------------------.
+| Example 'C' program using MCP's port |
+`--------------------------------------'
+
+struct MCPMessage
+{
+        struct Message Msg;
+        UWORD command;
+        UWORD nodenum;
+        long data1;
+        long data2;
+        long data3;
+        long data4;
+        long data5;
+        long data6;
+};
+struct MCPMessage themsg;
+struct MsgPort *MyPort, *MCPPort;
+
+        MCPPort = FindPort("SX-MCP");
+        if(MCPPort)
+        {
+                MyPort = CreateMsgPort();
+                if(MyPort)
+                {
+                        themsg.Msg.mn_Length = sizeof(struct MCPMessage);
+                        themsg.Msg.mn_ReplyPort = MyPort;
+                        themsg.nodenum = 0;
+                        themsg.command = 10;    /* 10 = QUERY SYSOP */
+                        PutMsg(MCPPort, (struct Message *)&themsg);
+                        WaitPort(MyPort);
+                        DeleteMsgPort(MyPort);
+                        if(themsg.data1)
+                        {
+                                PutStr("The Sysop is away because:nn");
+                                PutStr((char *)themsg.data1);
+                                PutStr("n");
+                        } else {
+                                PutStr("The Sysop is available!n");
+                        }
+                }
+        }
