@@ -1,0 +1,156 @@
+<HTML>
+<HEAD>
+<TITLE>usage</TITLE></HEAD><BODY><H6><A href=Main.html>Contents page</A></H6><P>
+<H1>usage</H1>
+<HR>
+ <PRE>
+ <B>How to use that shit ?</B>
+ ----------------------<P>
+
+ After calling the MessageLister, first an ansi-header comes up
+ (<I>if the sysop </I><A href=inst_MCI.html>calls the Door by MCI-File</A>) 
+ or the Door starts direcly with an overview of the installed 
+ MsgBases in the actual conference, you are.<P>
+
+ ex:                
+                  +- current Conference Name
+                  |           
+                  |           +- current Date/Time Last Call
+                  |           |                    |        
+                  |           |                    |
+                  *           *                    *
+ MsgBases in New User  05-18-98 | 14:30:52 LastCall: 05-18-98 
+ --------------------------------------------------------------
+ (  1) - New Users Chat   [ 278/8]|----------------------------
+ ---|-----|------------------|---|---
+    |     |                  |   |
+    |     |                  |   +- Number of New Msgs
+    |     |                  +- Number of total Msgs in this
+    |     |                     MsgBase
+    |     +- Name of the MsgBase    
+    +- Number of the MsgBase in current Conference<P>
+
+ 
+ <B>TitleBar Informations</B> : - current Conference Name
+                         - current Date
+                         - current Time
+                         - Last Call Date/Time<P>
+
+          <B>MsgBase List</B> : - Number of MsgBase
+                         - Name of MsgBase
+                         - Total Msgs in Base
+                         - Total New Msgs in Base<P>
+
+ After that a Commandprompt comes up and you are able 
+ to use the following commands:<P>
+
+ ex:<P>
+
+ <B>MsgLister Commands: ?,CR,E,R,L,I,S,s,+,-,#,(New Users Chat) :</B> <P>
+
+ The name of the current MsgBase, you browse in, is shown 
+ in the parentieses on the Commandprompt were you enter the
+ Commands you like to do.
+ The CommandPrompt also accepts digits for the selected  
+ MsgBase you like to join. (see `I`-command) <P>
+
+ The commands are :
+ 
+ <B>?</B>   - View the Helpmenu
+                This shows a small menuansi, explaining, what
+                the commands are doing.<P>
+
+ <B>??</B>  - View an additional Helppage, with more explaination to
+                the commands.<P>
+
+ <B>CR</B>  - Press Return and the MsgLister will quit. The Door will
+                quit, if you enter any unknown command.<P>
+
+ <B>E</B>   - Enter a Msg
+                Here you join Enter Msg by SystemX. You have to
+                put the Reciver and the subject into a normal 
+                way. Just enter a Msgs ...<P>
+
+ <B>R</B>   - Read a Msg &lt;Argumment&gt;
+                You may give an Digit Argument here for the Msg
+                you like to read.
+                For that, you write the Msgnumber you wich, 
+                like `r 13` or `r32` <P>
+
+ <B>L</B>   - List Msgs &lt;Argument&gt;
+                This will list all Msgs Headers in the current
+                MsgBase.
+                If a Digit Argument is given to the `L`
+                command, the Messages are listed from the 
+                MsgNumber &lt;Argument&gt; to Listend.
+                If no MsgNumber is given, the list starts at 
+                Msg #1.<P>
+
+                The List will inform you about:<P>
+
+                   - Name of MsgBase
+                   - total Msgs in MsgBase
+                   - Msg number
+                   - Date/Time of Msg edit
+                   - Name of writer
+                   - Name of receiver
+                   - Replay Marker
+                   - New Marker
+                   - File Attached Marker
+                   - Msg Subject
+                   - `PRIVATE MSG` Flag
+                   - `DELETED` Flag<P>
+
+                The Massage Markers are:<P>
+
+                   &gt;  replayed
+                  &gt;&gt;  replayed twice
+                   *  new Msg
+                   +  file attached           <P>
+
+ <B>I</B>   - Index of MsgBases in the actual Conference.
+                This will show you the same, as you see at
+                startup the Door. If you enter a Number at the
+                CommandPrompt, you automatic join the selected
+                MsgBase(Nr.) and see the list of last Msgs in
+                the new joined MsgBase.<P>
+
+ <B>S</B>   - Scan for new Msgs. 
+                This Mailscan searches for new Msgs for you
+                and let you choose btw. READ, QUIT, IGNORE 
+                the new mail.
+                The Mailscan also accepts Msgs to 
+                `all` and `eall`. 
+                After that, you return the CommandPrompt.
+       
+    <B><I>! If you call the Door with additional Argument `s`,
+    so only! Mailscan will be executed.
+ 
+              Ex:`ml s`. see <A href=install.html>Calling SX_MSG</A><P>
+
+    If you call the Door with additionaöl Argument `i`, 
+    so only! the MsgBase Index is shown!</B></I> <P>
+
+ s   - scan for unreaded Msgs &lt;Argument&gt;  (see L.R.P.)
+       A short Index of unreaded Msgs will shown here in the
+       form of the Mailscan. 
+       All Conferences, you have axx to, are scanned and all   
+       unreaded Msgs are visible and counted.<P>
+
+       <B>If you give the `s` Command an Argument `o`, all
+       unreaded Msgs will reset to OLD (read already).</B>
+       
+       <B>This will not reset the flag for New Mail, 
+       its for <I>unreaded</I> ! </B>  <P>
+
+ <B>+/-</B> - browse to next/previous MsgBase in this Conference<P>
+
+ <B>#</B>   - List the last Msgs only
+                How many lines are listed, is given by the
+                usersettings ScreenLegth.
+                Only the last Messages will be listed as Header
+                List as same as the `L` command does.<P>
+<P>
+
+ <A href=install.html>&lt;</A>  <A href=features.html>&gt;</A>  <A href=Main.html>Main</A>
+<HR>

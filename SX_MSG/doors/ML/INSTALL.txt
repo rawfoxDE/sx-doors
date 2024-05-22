@@ -1,0 +1,15 @@
+
+ Installation:
+ -------------
+
+ If you have already the SX_MSG on your SystemX installed, 
+ then you may only copy the new files over the old.
+ Read the updated guide for the new features at calling SX_MSG.
+
+ If you install the SX_MSG for the first time, you have to read
+ the Guide->Install for the different form of calling the ML.
+
+ A quickstart is not the best, but if you like, so bind a normal
+ XIM-Command to the SX_MSG, restart and use.
+
+ Thats it....NjOY!

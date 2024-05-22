@@ -1,0 +1,39 @@
+<HTML>
+<HEAD>
+<TITLE>inst_MCI</TITLE></HEAD><BODY><H6><A href=Main.html>Contents page</A></H6><P>
+<H1>inst_MCI</H1>
+<HR>
+<PRE>
+ <B>Call ML by MCI-File:</B>
+ --------------------
+ 
+ If you call the MessageLister by an MCI_File, you may handle
+ the startup in serveral ways.
+ How to use MCI-Files you can read in the SX-Guide.<P>
+
+ - open SXConfig -&gt; Menus/Commands -&gt; Main_Menu
+ - add a new Command:<P>
+
+   Command :  ML         /* the Command Name       */
+   ExtraNr.:   0         /* no Extra Number needet */
+   LowAxx  :  10         /* Low Axx for the ML     */ 
+   HighAxx : 255         /* High Axx for the ML    */
+   Func.ID :  12         /* show Ansi              */
+   Door/String/File : SX:doors/ml/sx_msg.ans   /* path to the
+                                                  ML-Header  */<P>
+
+ - check the Part in the <B>SX_MSG.ans</B> (AnsiHeader), were
+   the Door is called like `<B>~SX_doors/ml/sx_msg.ans</B>`, 
+   if its correct for you.<P>
+
+ Do not kill the `[2J` for clear Screen at the top of the file
+ while editing with any AnsiEd !<P>
+
+ You may edit the HeaderFile like your whishes, a complete
+ MCI-Command Reference for SystemX ca be found in the SX-Guide.<P>
+
+ Send me your own MessageLister Headeransi, i will spread it
+ with the next update !!<P>
+
+ <A href=install.html>&lt; Install</A>  <A href=inst_XIM.html>&gt;</A>  <A href=Main.html>Main</A>
+<HR>

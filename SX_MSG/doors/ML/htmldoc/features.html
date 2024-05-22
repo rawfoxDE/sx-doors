@@ -1,0 +1,118 @@
+<HTML>
+<HEAD>
+<TITLE>features</TITLE></HEAD><BODY><H6><A href=Main.html>Contents page</A></H6><P>
+<H1>features</H1>
+<HR>
+       <PRE>
+<B> history/features:</B>
+ -----------------
+         
+ SX_MSG V1.3:
+         
+   10.2.98
+          - activ prompt, show current msgbase name
+          - msgbase selection with num. input direct at the
+            prompt, then readtopic-&gt;user.screenlenght-&gt;listend
+            only.
+          - msgread selection with argument `r 12` or `r12` 
+            here join Msg Options of sx
+          - complete msgs indexlist or only the last ones will
+            shown number,date,time,from,to,reply,subject
+          - ascii found and colored :) now MCI-file does 
+            clearscreen at beginning (optional), then logo,
+            then door or what ever you want
+          - some bugs fixed
+          - double listing the MessageBases
+            titelbarinfo: current conference name, current
+            time/date, last login, max msgs/new msgs in
+            current base
+   25.3.98
+          - bugfix - handles 256 MessageBases with maximal
+            10.000 Messages/MessageBase
+          - reply marker - shows, if the Message is answered  
+            if a msg is replyed more then 1 time, its a double
+            reply marker
+          - new nice looking helpmenu added
+          - private-flag added  :   + if msg is private
+                                      subject=`PRIVATE`
+                                    + private msg subject
+                                      visible for 
+                                      writer and reciver
+          - delete-flag added   :   + deleted msgs have
+                                      `DELETED` in subject
+   3.4.98
+          - changed gfx-output a bit
+          - cut the timestring to 5 chars, swap time and date
+            output
+          - move the actualbase(baseindex) function to trash.
+            found XIMFunction(507,0,0) JH_MCI :) for current
+            msgbase at the prompt
+          - bugfix - change the current LRP
+          - new msgs are shown now ! flagged in baseindex and
+            subjectlist and how many of them.
+          - bugfix - cut the messagebasename to 12 chars, coz
+            output trouble
+          - optimised the code, i.e. done an argumentparsing
+            for SX_Function
+          - tuned the gfx a bit
+          - added a small and raw info
+   22.5.98
+          - added a Mailscan what shows unreaded and new mails
+            Mailscan let you choose between read the new msg,
+            do not read or quit mailscan. If you like to read
+            your new mail, Mailscan joins the msg automatic,
+            acceps `eall`,`all` and `username` to be active
+          - call the door with argument `s` for mailscan only !
+          - added an argument for `s` (scan for unreaded msgs,
+            named `o` to switch all msgs in all msgbases to
+            OLD.<P>
+
+          - added an argument for `L` (Listview) were you can
+            give a msgnumb from what you like to view the list
+   28.5.98
+          - Mail/Msgscan has now a conference user access level
+            check. If the User has no access to any conference,<P>
+
+            the mailscan breaks.
+          - an Informationpage was added with more detailed
+            explaination about the commands        
+   30.5.98
+          - if Users Screenlength &lt;= 27 lines, the
+            informationpage switched to a second part
+          - optimised the source, killed lamershit. source: 54k
+            including all Ansis
+    1.6.98
+          - make the conference axx check more advanced. checks
+            now all confs for axx, does not break after noaxx
+            anymore. 
+            Ex: Confaxx:  XXX_XX_X
+          - do some more small internal fixes, opts, gfx,
+            funcs,... only penouts
+    3.6.98
+          - bugfix - after Mailscan found new mail, the
+            CommandPrompt is ok now. fixed some penouts, too
+          - finish this Guide
+   20.3.99
+          - make very more code optimisations. source: 20k
+          - add prefix `i` to show the MsgBases of the actual
+            conference, only
+          - fix a bug in SX: Join.ANS was shown before you 
+            really join the conference, so if you call Doors
+            from theJoin.ANS file, what are MsgBase specific,
+            you earn the data from last conf.
+            Now use ML as internal map command to call it in
+            Join.ANS like:
+            ~SX_MI\17\0| (execute internal map function)
+          - add a blue(Esc[34m)`+` as flag for fileattaches in 
+            the Msg.<P>
+
+   known Bugs:
+                        
+   - MailScan does not work 100%, sometimes new Msgs are
+     not found and any crap is typed and the LRP is set :(
+     I will fix this, when i include SX-Config-&gt;Doors-&gt;MailScan
+     in SystemX soon.<P>
+<P>
+
+ <A href=usage.html>&lt;</A>  <A href=plans.html>&gt;</A>  <A href=Main.html>Main</A>
+<HR>

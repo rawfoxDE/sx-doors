@@ -1,0 +1,30 @@
+<HTML>
+<HEAD>
+<TITLE>inst_XIM</TITLE></HEAD><BODY><H6><A href=Main.html>Contents page</A></H6><P>
+<H1>inst_XIM</H1>
+<HR>
+<PRE>
+ <B>Call ML as XIM:</B>
+ ---------------<P>
+
+ If you call the MessageLister direct as XIM-Door, it will
+ start without any preactions with the Index of the 
+ MessageBases in the current Conference.<P>
+
+ - call SXConfig -&gt; Menus/Commands -&gt; Main_Menu
+ - add a new Command:<P>
+
+   Command :  ML     ; Command Name       
+   ExtraNr.:   0     ; no ExtraNr. needed 
+   LowAxx  :  10     ; LowAxx for the ML  
+   Highxx  : 255     ; HighAxx for the ML 
+   Func.ID : 120     ; XIM-Door !         
+   Door/String/File :  sx:doors/ml/SX_MSG  ; the path to ML<P>
+
+ - Restart SystemX to activate the new Command.<P>
+
+ Now logon and check, if all went fine :)<P>
+
+ 
+ <A href=install.html>&lt; Install</A>  <A href=inst_MS.html>&gt;</A>  <A href=Main.html>Main</A>
+<HR>

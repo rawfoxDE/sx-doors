@@ -1,0 +1,23 @@
+ 
+        
+          Changes SX_MSG V1.3 beta
+         --------------------------
+  
+   20.3.99
+     
+          - bugfix after Mailscan with found mail : Mainprompt does not
+            show the full name of the curr. msgbase....fixed
+          - bugfix in Scanroutine fixed...no empty lines in scantable
+            anymore
+          - implement a `+` for file attachement in Msgs list
+          - optimised the source: 23k including all ansis, faster
+          - update the guide
+          - implement prefix `i` for base index in conference like a bull,
+            so you can call it from Join.ANS without function.         
+
+todo:
+          - delete msg by nr. from subjectlist (SXFunction?) 
+          - if a msg is replayed, add `re:` to the subject WHILE REPLAYING
+            need implementaion in sx, too, or i do it in the ML
+          - begin some tests for networking ;)
+                    
