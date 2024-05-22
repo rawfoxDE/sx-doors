@@ -1,0 +1,105 @@
+@database 679792f0-0
+@master HeddleyCreation
+@$VER: 1.0
+@remark Created with Heddley v1.1 (c) Edd Dumbill 1994
+
+@node "Main" "The New User Reporter"
+
+ Welcome to the New User Reporter
+ --------------------------------
+
+             @{"IntrodZ" link "intro" 0}
+    @{"InztalL" link "install" 0}   v1.0a   @{"UuusagE" link "usage" 0}     
+             @{"SupporT" link "support" 0}
+
+ --------------------------------
+ written by [r]FoX from da hOUSe!
+@endnode
+
+@node "intro" "intro"
+
+@{b} Introdz@{ub}
+ -------
+ 
+ Yea, another Door leave da Churchhouse and it was requested by
+ War-Pig some weeks ago, so i do it now.
+
+ Its a bulletin-creator, what shows, if new users are on system,
+ or not, and who they are.
+
+ Its for the usage with the SystemX Bulletin Board Software by
+ Zed^DC, what`s supported on http://sx.denet.co.jp
+
+ 
+ @{"<" link "Main" 0}  @{">" link "install" 0}  @{"Main" link "Main" 0}
+@endnode
+
+@node "install" "install"
+
+ @{b}Installation@{ub}
+ ------------
+
+ - create a Directory @{b}sx:doors/NewRep@{ub}
+ 
+   contents of NewRep/  - NewRep
+                        - nr.header
+                        - nr.config
+
+ - @{b}@{bg shine}NewRep@{ub}@{bg back} is the Main XIM-Executable.
+   Call it in the sx:screens/goodbye.ans like
+  
+   `@{b}~SX_SX:Doors/NewRep/NewRep\120\0|@{ub}`
+
+   It will be executed at every logoff, so it is actual at
+   every time.
+
+ - @{b}@{bg shine}nr.header@{ub}@{bg back} is the calling ansi.
+   Call it from your Bulletinsmenu or anywere in 
+   sx:sceens/postlogin.ans like `@{b}SS_SX:bulletins/NewUser.ans\12\0|~SP|@{ub}`
+   You may edit the Header like your wishes.
+   How to use MCI-Commands read in the SX-Guide.
+
+ - @{b}@{bg shine}nr.config@{ub}@{bg back} is the output path for the bulletin.
+   If this File does not exists, NewRep uses as default
+   `@{b}sx:bulletins/NewUser.ans@{ub}`.
+   Use valid path`s here, only.
+
+ 
+ @{"<" link "intro" 0}  @{">" link "usage" 0}  @{"Main" link "Main" 0}
+@endnode
+
+@node "usage" "usage"
+
+@{b} Usage@{ub}
+ -----
+
+ If no new users on system, the ansi is still small and
+ tells only, no newbies are on board.
+ Else, the ansi shows the Newbies and tells the User, to connect
+ the Sysop, if one of the newbies is known.
+
+ Create the Header like yer wishes, and if you like, so send
+ me that, i`ll spread it with the next update.
+
+
+ @{"<" link "install" 0}  @{">" link "support" 0}  @{"Main" link "Main" 0}
+@endnode
+
+@node "support" "support"
+
+@{b} Support@{ub}
+ -------
+ 
+ All Marzipan Doors are supported
+
+ in da House :  @{b}@{bg shine}+49 (0)451 55220@{ub}@{bg back}  in Germany at 33k6 analog
+                
+ in da nnNeT :  @{b}@{bg shine}http://amichurch.home.ml.org@{ub}@{bg back}  on da web
+                @{b}@{bg shine}house.dyn.ml.org@{ub}@{bg back}  Telnet Port 23 at 22.00-0.00 GMT
+ 
+ or ba eMail :  @{b}@{bg shine}house_bbs@hotmail.com@{ub}@{bg back}
+               
+
+ @{"<" link "usage" 0}  @{">" link "Main" 0}  @{"Main" link "Main" 0}
+@endnode
+
