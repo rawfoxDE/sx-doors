@@ -1,0 +1,30 @@
+ 
+ [34m_   _   __
+|.\ /.\ |  [1m[31m`
+[22m[34m|_/ \_/ |__[1m[31m [34ms[31m__
+[22m             [1m`[22m[34mx[1m[31m'
+[22m[36m=============[34m/[36m=[34m\[36m================================
+             [34m\_/
+ 
+[1m[33mWelcome to Cars !
+[22m 
+[1mThe Game is easy to play. Just choose your Car
+and get to Race.
+After the Flag has Counted down, press Return to
+start your Car.
+[22m 
+[1mthats the near Plan...
+[22m 
+[32mwell, after some weeks i reworked the raceroutine           [33m[44m19.12.97
+[32m[40mand now 6 Cars can be raced. At this time a little Prompt
+shows 3, 2, 1, goooo! and then you must press `Return`
+to start the Race. After that, the cars racin` on.
+If a car has reached the finish, i prompts its win in
+that colour, the car has.
+ 
+The Future Plan is now, to select the Car and Type it out,
+while get to the Racingscreen. The others must be typed out,
+too, bevor the race starts.
+ 
+ 
+[1m[33m<press key...>
