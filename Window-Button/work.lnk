@@ -1,0 +1,4 @@
+FROM LIB:c.o "work.o"+"workwin.o"
+TO "work"
+LIB LIB:sc.lib LIB:amiga.lib
+

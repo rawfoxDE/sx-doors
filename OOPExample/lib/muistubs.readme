@@ -1,0 +1,11 @@
+Short:    stubs linker library for MUI tagcalls
+Author:   BLiZZeR@dame.de (Maik Schreiber)
+Uploader: BLiZZeR@dame.de (Maik Schreiber)
+Type:     dev/mui
+
+If your compiler doesn't understand #pragma tagcall as defined in
+<pragmas/muimaster_pragmas.h>, you surely need this stub functions
+linker library.
+
+Just copy it to your LIB: directory and link it to your programs.
+This linker library should work with all C compilers.

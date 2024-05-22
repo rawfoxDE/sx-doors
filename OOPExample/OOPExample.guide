@@ -1,0 +1,314 @@
+@database OOPExample.guide
+@smartwrap
+@$VER: OOPExample.guide 1.0 (6.6.98) © by Maik "bZ!" Schreiber
+
+@node "Main" "OOPExample 1.1"
+@{jcenter}@{par}
+
+@{b}@{u}OOPExample 1.1 - Copyright © 06-Jun-1998 by Maik "bZ!" Schreiber@{uu}@{ub}@{par}
+
+Please visit @{b}The IQ Computing Web Site @{ub}at @{b}www.IQ-Computing.de@{ub}@{par}
+
+@{" Introduction     " link "Introduction"}@{par}
+@{" Explanation      " link "Explanation"}@{par}
+@{" Compiling        " link "Compiling"}@{par}
+
+@{" Copyright        " link "Copyright"}@{par}
+
+@{" History          " link "History" 9999}@{par}
+
+@{" Author           " link "Author"}@{par}
+@{" Acknowledgements " link "Acknowledgements"}@{par}
+
+
+Note: This document makes heavy use of OS 3.1 @{amigaguide} commands.@{par}
+
+@endnode
+
+@node "Introduction" "Introduction"
+@{par}
+  @{b}@{u}Introduction@{uu}@{ub}@{par}
+
+Have you ever wondered about how MUI's object oriented programming
+techniques work? Did you look at psi.c over and over again, but didn't get
+the point?@{par}
+
+Well, here's the final solution. OOPExample is a small example demonstrating
+MUI's OOP. If you don't learn it from OOPExample, you'll never learn it!
+;-)))@{par}
+Simply read the @{"source code OOPExample.c" link "OOPExample.c/Main"}, it explains all you have to know.@{par}
+
+OOPExample has been tested and compiles fine under MaxonC++ 4.0, SAS/C 6.58,
+StormC 1.1 and GCC 2.7.2.1.@{par}
+
+@endnode
+@node "Explanation" "Explanation"
+@{par}
+  @{b}@{u}Explanation@{uu}@{ub}@{par}
+
+As stated in the @{"introduction" link "Introduction"}, OOPExample should show you how to write an
+object-oriented program with MUI. However, OOP with MUI does not mean C++
+here. We are programming in normal C, but using MUI's OOP features, ok? ;)@{par}
+
+First of all you should have little knowledge of OOP, because it's quite
+complicated to explain it all here. I think it's the best if you get a good
+C++ book from a library or something. Second, you should know how to write
+MUI programs. You should know about MUI's classes, their attributes, methods
+and stuff.@{par}
+
+Ok, now let's go on. Before I got to know how MUI's OOP features work, I
+didn't have a clue about it. I didn't know about dispatchers, method
+handlers and all that stuff. I looked at psi.c, but that was so complex that
+I really didn't get the point!@{par}
+
+All I wanted was a small example. It should open a window with a button
+inside it. Clicking on this button should open a second window, clicking it
+again should close the second window. Nothing more, nothing less.@{par}
+(Maybe a few guys on the MUI mailing list remember ;)@{par}
+
+Fine, I knew how to do it with return IDs: Clicking the button returns an ID
+to the main input loop, and the loop decides to open or close the second
+window. But damn, that was no OOP!@{par}
+
+Then, two guys (Kai Hofmann and Jan Hendrik Schulz, hello there :)) told me
+to implement my example using an attribute. But how?! How to add a new
+attribute to what?@{par}
+
+Anyway, I finally had a look at Klaus Melchior's Tron.mcc example and click!
+Of course! That's how it works!@{par}
+
+
+You're still reading? Fine :-)))  Let's go on then:@{par}
+
+Of course there are many ways to implement a new custom class which
+satisfies my wish for that example above. I want to show you two of
+them:@{par}
+
+@{lindent 3}1. Implement a new custom class which is derived from Window.mui. Inside it,
+it shall create a button itself. Clicking on this button should read an
+attribute specifying the other window to open/close and open or close
+that window.@{lindent 0}@{par}
+
+@{lindent 3}2. Implement a new custom class which is derived from Text.mui (adding an
+input mode, of course, so that we have a button). Clicking on this button
+again reads out the attribute and opens or closes the other window.@{lindent 0}@{par}
+
+In this example we implement the first way, because it shows general data
+hiding techniques of OOP: The first window object we create from our custom
+class does not know about the button inside the other window and vice versa.
+Furthermore, we have less global identifiers and stuff.@{par}
+
+Now let me explain how we're going to implement the new custom class:@{par}
+
+First, when creating an object from that class, we create the window itself
+(of course). Next, we create the button inside it. Third, we setup a
+notification on that button to send the object (our window) a method.@{par}
+
+"But how does that method know about the other window, which should be
+opened or closed depending on its state?" you may ask.@{par}
+This is done via a new attribute called MUIA_OOPWindow_WindowToOpenOrClose.@{par}
+
+After the complete application object tree is created within the main
+program, we know about our two window objects, which are instances of our
+new OOPWindow class. All we have to do now, is to "say" window 1, that its
+button has to open or close window 2. And window 2 has to know that its
+button should open or close window 1. This is done via a more than simple
+set() call.@{par}
+
+@{b}THAT'S IT!@{ub}@{par}
+
+Now, when you click the button in window 1, its notification sends the
+specified method (called MUIM_OOPWindow_OpenOrCloseWindow) to the object
+(which is window 1 again). Using the attribute window 1 now knows about
+window 2 and is able to open/close it! (Of course, this works the other way
+round in this example.)@{par}
+
+
+Ok, girls and guys, now you have the knowledge of how to write
+object-oriented progams with MUI! Isn't that simple? :-)))@{par}
+
+The @{"source code" link "OOPExample.c/Main"} has loads of comments inside, so just have a look.@{par}
+
+@endnode
+@node "Compiling" "Compiling"
+@{par}
+  @{b}@{u}Compiling@{uu}@{ub}@{par}
+
+For MaxonC++, load the project file OOPExample.project, set your working
+directory and compile the project.@{par}
+@{b}NOTE: @{ub}Do *NOT* use <linkerfunc.h> and GetBaseReg(), because it does not work
+correctly! Always create a large code model!@{par}
+
+For SAS/C, simply type "smake" on the command line prompt.@{par}
+
+For StormC, load the project file OOPExample.∂, set all directories to your
+needs and compile the project.@{par}
+
+For GCC, simply type "make" on the command line prompt. If you don't have
+GNU make (!), look at the makefile to find the options.@{par}
+
+@endnode
+
+@node "Copyright" "Copyright"
+@{par}
+  @{b}@{u}Copyright@{uu}@{ub}@{par}
+
+OOPExample.c is Copyright © 1997-1998 by Maik "bZ!" Schreiber/IQ Computing.@{par}
+
+Permission is hereby granted, without licence or written agreement, to
+re-use all parts of the OOPExample source code, to modify it in any way or
+whatever. You are allowed to use the whole example for anything you want.@{par}
+
+OOPExample is *NOT* in the public domain! If you re-use any part of its
+source code, you must include the above copyright notice ("... is Copyright
+...") into the documentation of your program.@{par}
+
+@endnode
+
+@node "History" "History"
+@{par}
+  @{b}@{u}History@{uu}@{ub}@{par}
+
+1.0, 07-Feb-1997:@{par}
+@{lindent 4}  - first version of OOPExample@{lindent 0}@{par}
+
+1.1, 06-Jun-1998:@{par}
+@{lindent 4}  - included some macros into OOPExample.h to simplify programming@{lindent 0}@{par}
+@{lindent 4}  - MAKE_ID() macro removed (already defined in <libraries/iffparse.h>)@{lindent 0}@{par}
+@{lindent 4}  - created @{amigaguide} documentation@{par}
+
+@endnode
+
+@node "Author" "Author"
+@{par}
+  @{b}@{u}Author@{uu}@{ub}@{par}
+
+@{lindent 11}@{b}SnailMail: @{ub}Maik Schreiber@{par}
+Thielenstraﬂe 9@{par}
+21109 Hamburg@{par}
+Germany@{lindent 0}@{par}
+
+@{code}@{b}EMail    : @{ub}bZ@iq-computing.de@{body}@{par}
+
+@{lindent 11}@{b}Phone    : @{ub}+49 (0)40 75 49 31 24 (4:00pm - 9:00pm MET/MEST)@{lindent 0}@{par}
+
+@{code}@{b}Web site : @{ub}www.IQ-Computing.de@{body}@{par}
+
+@{lindent 11}@{b}Account  : @{ub}Account: 66 09 440  (Maik Schreiber)@{par}
+BLZ    : 200 700 00 (Deutsche Bank)@{lindent 0}@{par}
+
+@{b}PGP key  : @{ub}@{par}
+
+@{code}Type Bits/KeyID    Date       User ID
+pub  2048/B71E1741 1996/06/17 Maik Schreiber <bZ@iq-computing.de>
+sig       B71E1741             Maik Schreiber <bZ@iq-computing.de>
+                              Maik Schreiber <bZ@dame.de>
+sig       B71E1741             Maik Schreiber <bZ@iq-computing.de>
+                              Maik Schreiber <blizzer@gmx.net>
+sig       B71E1741             Maik Schreiber <bZ@iq-computing.de>
+                              Maik Schreiber <http://www.IQ-Computing.de>
+sig       B71E1741             Maik Schreiber <bZ@iq-computing.de>
+                              Maik Schreiber <BLiZZeR@dame.de>
+sig       7DE5E039             Oliver Hauth <phomexa@vnet.e.ruhr.de>
+sig       34D74DC1             Peter Simons <simons@petium.rhein.de>
+sig       5C77B04D             Johnny Tevessen <j.tevessen@line.org>
+sig       84539E45             Oliver Hauth <phomexa@forall.dame.de>
+sig       B71E1741             Maik Schreiber <bZ@iq-computing.de>
+                              Maik Schreiber <http://home.pages.de/~bZ>
+sig       34D74DC1             Peter Simons <simons@petium.rhein.de>
+sig       5C77B04D             Johnny Tevessen <j.tevessen@line.org>
+sig       B71E1741             Maik Schreiber <bZ@iq-computing.de>
+
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: 2.6.3ia
+Comment: visited www.IQ-Computing.de yet?
+
+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
+BTEtAeq3Xv0KA5pV3A==
+=eOG5
+-----END PGP PUBLIC KEY BLOCK-----@{body}@{par}
+
+@endnode
+@node "Acknowledgements" "Acknowledgements"
+@{par}
+  @{b}@{u}Acknowledgements@{uu}@{ub}@{par}
+
+I would like to thank the following people:@{par}
+
+@{b}Matthias "Quape" Kaulartz@{ub}@{par}
+
+@{b}Oliver "Phomex A" Hauth@{ub}@{par}
+
+@{b}David le Corfec@{ub}@{par}
+@{lindent 4}  - for adapting OOPExample to GNU/C@{lindent 0}@{par}
+
+@{b}All who I did forget... :)@{ub}@{par}
+
+@endnode
+

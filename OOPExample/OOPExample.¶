@@ -1,0 +1,61 @@
+Storm Shell Project (0007)
+Settings (Start)
+C/C++ Environment
+"StormC:Include/"
+"Include:"
+Includepath (End)
+0 "" 999
+0 "objects"
+C/C++ Preprozessor
+Defines (End)
+1 0 1
+C/C++ Options
+0 1 1 0 0 0 0 0 0 0 0 1 1
+C/C++ Optimizer
+9
+C/C++ Warnings
+1 1 1 1 1 1 0 1
+Linker
+0 0 "PROGDIR:startup.o" 0 0 1 0 0 0 0
+"StormC:lib/" 0 "StormC:lib/logfile" 0 0 0
+0 "_WizardSurface"
+0 0 50 0 50 0 50 0 0
+0 0 0 0 0 0 0 0
+Run
+30 "" "" "" 0
+""
+
+1 "CON://400/180/Storm Console/AUTO/WAIT/SCREEN StormScreen" "RAM:Output" "RAM:Input"
+1 0
+Settings (End)
+File
+1 "OOPExample.c"
+"OOPExample.c"
+"OOPExample.h"
+Storm Shell Project (Dependencies)
+"OOPExample.o" "OOPExample.debug"
+Section
+1 1 100
+File
+2 "OOPExample.h"
+Storm Shell Project (Dependencies)
+Section
+2 0 95
+File
+10 "cs:OOPExample/OOPExample_Storm"
+Storm Shell Project (Dependencies)
+"cs:OOPExample/OOPExample_Storm.link"
+Section
+10 0 40
+File
+5 "xWusel:C/lib/muistubs.lib"
+Storm Shell Project (Dependencies)
+File
+5 "xWusel:C/lib/storm_near.lib"
+Storm Shell Project (Dependencies)
+File
+5 "xWusel:C/lib/amiga.lib"
+Storm Shell Project (Dependencies)
+Section
+5 0 -50
+Storm Shell Project (End)

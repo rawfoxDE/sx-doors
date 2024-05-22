@@ -1,0 +1,60 @@
+Short:    OOP and MUI?! No problem!
+Kurz:     OOP und MUI?! Kein Problem!
+Author:   bZ@iq-computing.de (Maik Schreiber)
+Uploader: bZ@iq-computing.de (Maik Schreiber)
+Type:     dev/mui
+Version:  1.1
+
+
+   TITLE
+        OOPExample
+
+   VERSION
+        1.1
+
+   RELEASE DATE
+        06.06.1998
+
+   DESCRIPTION
+        Have you ever wondered about how MUI's object oriented programming
+        techniques work? Did you look at psi.c over and over again, but
+        didn't get the point?
+
+        Well, here's the final solution. OOPExample is a small example
+        demonstrating MUI's OOP. If you don't learn it from OOPExample,
+        you'll never learn it! ;-)))
+        Simply read the source code OOPExample.c, it explains all you have to
+        know.
+
+        OOPExample has been tested and compiles fine under MaxonC++ 4.0,
+        SAS/C 6.58, StormC 1.1 and GCC 2.7.2.1.
+
+   SPECIAL REQUIREMENTS
+        any C compiler
+
+   AVAILABILITY
+        http://www.IQ-Computing.de
+        ftp://ftp.iq-computing.de/pub/OOPExample.lha
+        ftp://ftp.wustl.edu/pub/aminet/dev/mui/bZ_OOPExample.lha
+
+   PRICE
+        Freeware
+        Please read the documentation for further details.
+
+   NEW FEATURES
+        - included some macros into OOPExample.h to simplify programming
+        - MAKE_ID() macro removed (already defined in <libraries/iffparse.h>)
+        - created AmigaGuide® documentation
+
+   AUTHOR
+        Maik "bZ!" Schreiber <bZ@iq-computing.de>
+        www.IQ-Computing.de
+
+   DISTRIBUTION
+        Please read the documentation for further details.
+
+
+
+Please visit The IQ Computing Web Site at www.IQ-Computing.de
+
+Aminet downloaders: Please consider voting for this package. Thank you.
