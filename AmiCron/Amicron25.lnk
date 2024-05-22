@@ -1,0 +1,4 @@
+FROM LIB:c.o "Amicron25.o"+"timer.o"
+TO "Amicron25"
+LIB LIB:sc.lib LIB:amiga.lib
+
