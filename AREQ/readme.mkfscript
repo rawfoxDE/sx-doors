@@ -1,0 +1,35 @@
+Short: makes *ix scripts for ncftp from file index
+Uploader: uairk@mcl.mcl.ucsb.edu
+Author: Eric Augustine uairk@mcl.mcl.ucsb.edu
+Type: util/cli
+
+This was a quick little program to take something like the aminet index file and
+produce a script I could run from my *ix account at school that would use ncftp
+to retrieve a group of files in the background so that I could go about my usual
+business and at the end of the day I'd have stuff to take home :) Writing the
+scripts by hand was ridiculous- so I wrote it in REXX- this was slow so I redid
+it in C and went nuts adding options and making it a little more generalized - I
+also managed to keep it as ANSI as possible so that it _should_ compile and work
+on standard *ix machines as well albeit without the file-description options.
+For some reason even compiling with gcc and "-fwritable-strings" (thanks boing) 
+doesn't help with the descriptions.  Obviously I don't do enough in C or I'd 
+figure out the problem :)
+
+urm... using: Just do something like
+
+grep -i stuff INDEX | mkfscript -s ftp.cdrom.com:/pub/aminet stuff.sh
+
+if you have it running on a *ix machine - if you have it only on your Amiga box
+then use "pipe" or 
+
+grep -i stuff INDEX > stuff.index
+mkfscript ftp.cdrom.com:/pub/aminet stuff.sh
+
+Read the documentation for other options and so on. mkfscript handles quite
+a few ways of getting information to and from.
+
+ - Eric.
+   uairk@mcl.mcl.ucsb.edu
+   04AUG94
+
+

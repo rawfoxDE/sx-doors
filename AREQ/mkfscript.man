@@ -1,0 +1,155 @@
+
+
+
+MKFSCRIPT()	      Some Programmer's Manual               MKFSCRIPT()
+
+
+NAME
+	mkfscript - make a script-file to retrieve files  via ncftp.
+
+
+SYNOPSIS
+	mkfscript [ -options ] index-file site [script-file]
+
+
+DESCRIPTION
+       mkfscript merely reads a list of files from a larger catalogue of
+       files  and creates a  shell  script  which can be used in concert
+       with  ncftp to retrieve	the list of files.  It expects the input
+       file  to be in one  of two formats  (see index-file syntax below)
+       and will	 print the output  file	 either	 to a  named file or the
+       terminal with or without file-list entry descriptions.  mkfscript
+       will  also  keep track of lines	and characters should that be of
+       interest to the user.
+
+       Usage of mkfscript implies at least some minimal knowledge of the
+       use of ncftp  on the  command line to  non-interactively retreive
+       files.
+
+       Note that only index-files with file descriptions should be used.
+
+
+OPTIONS
+       The options for mkfscript are as follows:
+
+       -a   append a new set of	 commands to a pre-existing script-file.
+	    With  this	option the 'c' option is disabled  and mkfscript 
+	    expects  the pre-existing file  to be  the script-file which
+	    should be named in the usual place.
+       -c   print output to terminal screen (stdout) which may (obvious-
+	    ly) be redirected in the usual fashion to another file. This
+	    option  is	not necessary given  that mkfscript can create a
+	    file however, mkfscript originally only wrote to  stdout and
+	    this feature has remained.
+       -d   print output with  file descriptions  for each  entry in the
+	    index-file.	 Only index-files  with file descriptions should
+	    be used.
+       -i   print info about the script-file.  This  option produces two
+	    pieces of information - number of characters written and the
+	    number of lines written. output via this option is to stderr
+	    in order to not interfere with the output of the 'c' option.
+       -r   reverses  the  expected  input  syntax so  that files of the
+	    syntax:  <directory>  <filename> <file description> are also
+	    recognized and produce a usable script-file.
+       -s   read input from standard input (stdin)  with  this option on
+	    mkfscript takes information one line at a time from the key-
+	    board until an EOF (Ctrl-\) is encountered and then produces
+	    the output as required.
+
+       options	should	be  combined as in "-cdi" instead of "-c -d -i".
+
+
+SYNTAX
+       mkfscript [-acdirs] [index-file] <site:topdir> [script-file]
+
+       [index-file] may be  any file as mkfscript does not check to make
+       sure  it is  really what mkfscript  expects except that it exists
+       and is not a directory.	It is left to the user to make sure that
+       the syntax is correct. The index-file syntax follows:
+
+       index-file syntax:
+
+       <filename>   <directory>	   <file description>
+
+       This is the default accepted by mkfscript - an example follows:
+
+       mkfscript.tar.Z	 dbase/modify  20k+Makes ncftp scripts from cata
+       boom-1.11.lha	 game/destructo	 5k+Violence beyond contemplatio
+
+       reverse index-file syntax
+
+       <directory>   <filename>	  <file description>
+
+       This should be obvious from above without an example.
+
+       The <site:topdir> may be anything the user desires however  it is
+       suggested that it follow this example:
+
+       ftp.site.com:/pub/files
+
+       where the field following the ":" is the topmost directory to the 
+       set of files in your sourcefile. If your the files are in several
+       different  directories  then leave the  field after the ":" blank. 
+       mkfscript treats	 the site as  a string and hence expects nothing
+       of it, merely that it be there.
+
+
+DIAGNOSTICS
+       mkfscript returns a 0  upon a successful completion. Any non-zero
+       return is an error.  See the source for error meaning.
+
+
+AUTHOR
+       Eric R. Augustine: uairk@mcl.mcl.ucsb.edu (valid through SEP94)
+
+
+BUGS
+       This is copyrighted  freeware and  as such comes with no warantee
+       or assurances whatsoever. Any damage that results to man, machine,
+       data, or animal as a result of its use is not  the responsibility
+       of the above mentioned author.
+
+       With that drabble aside:	 the line  count  as a result of the 'i' 
+       option is a  little faulty due to inconsistencies  in  index-file
+       structure  since	 it  counts lines as  it goes and not in a third
+       pass.  Therefore if  compared  with  the output of an application
+       such as 'wc', mkfscript's output may be a little off.
+
+       The file description reproduction can be a little inconsistent at
+       times  -	 again due  to	the  inconsistencies of	 the index-file.
+       This  appears  to be irregular,	however	 it poses little  threat
+       since a small hack was introduced to  negate the	 effects of this
+       problem.
+
+       Another problem with file descriptions is in their absence.  If a
+       index-file does not contain  descriptions, mkfscript will produce
+       a  faulty  script-file.	Since I	 intended originally only to use
+       index-files  "grep'd"  from  the  AmiNet INDEX file such an error 
+       was not a problem.  Who would make  a file index without any  de-
+       scriptions anyhow?
+
+
+TODO
+       It was suggested that I add the ability to have an  external file
+       with  configure	information.  This  would allow the user to have
+       preset defaults such as a value for the delay between retries and
+       also command line aliases for site/directory combinations.
+
+
+LAST WORDS
+       mkfscript is Copyright (c)1994 by Eric R. Augustine.  Being free-
+       ware it may be handed  out, passed on and out however you feel as
+       long as all  original documentation and sources	are included and
+       that it is not done for the gain of any profit (as if it would be
+       possible	 to sell  this thing) If  you find it of use it would be
+       nice to receive a message to this effect.  I wrote  this	 hack in
+       the period of a few hours to take a  break from	everything  else
+       and solve a small problem - it needed a few options for challenge
+       which amounted  to a portion of the  next day and as the	 project
+       grew  it required  a little  more  time	-  like	 this  document.
+       Obviously,  due	to the nature  in which	 it  was  done there are
+       doubtless several other errors but it serves the original purpose
+       well and I hope it can be of use to someone else as well.
+
+
+
