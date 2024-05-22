@@ -1,0 +1,107 @@
+@database 67ac5e90-0
+@master HeddleyCreation
+@$VER: 1.0
+@remark Created with Heddley v1.1 (c) Edd Dumbill 1994
+
+@node "Main" "No title"
+
+
+                   @{b}@{u}Welcome to DupeCheck V1.0@{ub}@{uu}
+
+
+       @{"Introducing" link "intro" 0}  -*-  @{"Requirements" link "require" 0}  -*- @{"Installation" link "install" 0}
+
+                     @{"Contact" link "contact" 0}  -*-  @{"Greetz" link "greetz" 0}
+
+                               |
+   
+        DupeCheck 1.0 is a small`n sexy Dupchecker for
+         SystemX. It was done by [r]FoX dedicated to 
+                       @{b}dIGITAL.^cORRUPTIOn@{ub}
+
+ @{">" link "intro" 0}
+@endnode
+
+@node "intro" "intro"
+
+ @{b}@{u}Introducing:@{ub}@{uu}
+
+DupeCheck is a XIM Door for SystemX only. It checks the uploaded File for
+already existing Files in the BBS. This was a stoned one night hack at the
+base of Zed`s FileCheck, coz the output was not so cewl. Hmm, the results are
+very colored, i wondered by myself at the next mornin.. However, we`ll see...
+
+  [r]FoX
+
+ @{"<" link "Main" 0}  @{">" link "require" 0}
+@endnode
+
+@node "require" "require"
+@next "Document_1"
+@prev "intro"
+
+
+ @{b}@{u}Requirements:@{ub}@{uu}
+
+You need an Amiga. You need SystemX installed, otherwise the Door wont run.
+You need the File `FileCheck.DAT` ( see @{"Installation" link "install" 0} ).
+
+ @{"<" link "intro" 0}  @{">" link "install" 0}
+@endnode
+
+@node "install" "install"
+
+
+ @{b}@{u}Installation:@{ub}@{uu}
+
+ - You must have the File `@{b}sx:confs/confname/FileCheck.DAT@{ub}`
+  in that Conferences, you like to run DupeCheck after
+  Upload.
+
+ - Add the following Lines to FileCheck.DAT :
+
+
+  @{i} 1 
+   doors:dupecheck@{ui}        /* use any path you like */
+
+
+  For more Information about Filecheck Doors read the SystemX
+  Guide.
+  If the File `DupeCheck.DAT` does not exist, you may create
+  it with any texteditor.
+
+ @{"<" link "require" 0}  @{">" link "contact" 0}
+@endnode
+
+@node "contact" "contact"
+
+
+ @{b}@{u}Contact:@{ub}@{uu}
+
+ Any suggestions or Design hints are welcome at
+
+ @{b}house_bbs@hotmail.com@{ub}
+
+ or catch me at Pulsarnet #elitecafe ...
+
+ [r]FoX
+
+ @{"<" link "install" 0}  @{">" link "greetz" 0}
+@endnode
+
+@node "greetz" "greetz"
+
+
+ @{b}@{u}Greetings:@{ub}@{uu}
+
+ For all you outa there....
+
+ zED * tHEmIXXER * gET_mERYY * zEUS\mSR * rAMoNSTEr 
+ sAL-oNE * lEATHERfACE * r19 * MAZ\DLM * tHALER^!x
+ oBLIGATOR * pHANTOM 
+
+ and all loveley Dudez i forgott atm (too much BSE)
+
+ @{"<" link "contact" 0}  @{">" link "Main" 0}
+@endnode
+
