@@ -1,0 +1,57 @@
+
+===========================
+SXUserStatus v0.4 by [r]Fox
+===========================
+
+iNTRODUCING
+-----------
+This is my first Online door for SX and its the first i wrote in
+SASC. I use Exec Messages for SystemX only, so this door cannot
+run under another bbs-software.
+
+vERSIONS
+--------
+
+- 0.1 get all the parms and values
+- 0.2 include the first gfx
+- 0.3 replace something and include the
+      `dISABLED` Function for File/Byteratios
+- 0.4 rework the finish
+
+iNSTALLATIOn
+------------
+
+For install it to SX do the following steps:
+
+- copy SXUserStatus to doors:
+
+- edit Commands/MainMenu/S as normal XIM-Command
+
+- you may call it in an MCI-text, i.e. postlogin.ans with
+  `SX_doors:SXUserStatus\120\0|`
+
+- shutdown node and restart SX 
+
+
+bUGs
+----
+
+There are no known bugs in this tool, but if you find some,
+so mail me at house_bbs@hotmail.com.
+This Door was done on a A12ooT with 030/50/50mHz and 26 MB Ram.
+The Scsi-Option servs an JVC-2010 CDRecorder and some gigs are
+present too. This is done in C.
+
+cONTAcT
+-------
+
+You can mail me at house_bbs@hotmail.com,
+or grab me on IRC #amielite...or Galaxynet #amiga_warez
+
+gREETz
+------
+
+zEd,vinyl,ironfist,wolfman,jungle,joule,sn00py,wizkid,... 
+
+
+[r]FoX

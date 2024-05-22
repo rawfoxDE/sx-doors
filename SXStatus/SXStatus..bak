@@ -1,0 +1,194 @@
+/*
+
+----------------------------------------------------
+      SXUserStatus 0.3 beta by [r]fox
+----------------------------------------------------
+13.11.97
+
+*/
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <proto/exec.h>
+#include <proto/dos.h>
+#include <sxstructs.h>
+
+struct MsgPort *bbsport;
+struct SXUserStruct * SXUser;
+struct UserIndexStruct * Uid;
+struct UserData * User;
+//struct MainStruct * BBS;
+
+struct JHMessage
+{
+  struct Message Msg;
+  char String[200];
+  int Data;
+  int Command;
+};
+struct JHMessage themsg;
+
+void PS(char * str);
+void XIMFunction(int func, long data, char * str);
+void UStats(void);
+
+BOOL sx;
+
+int main(int argc, char *argv[])
+{
+	char portname[16];
+
+	if(argv[1][0]==0)
+	{
+		PutStr("This program requires System-X BBS Software\n");
+	} else {
+		sprintf(portname, "AEDoorPort%s", argv[1]);
+		bbsport = FindPort(portname);
+		if(bbsport)
+		{
+			XIMFunction(1, 0, 0); 	/* function 1 = register */
+
+			/* find out if we are under SYSTEM-X or AmiExpress */
+
+			if(strcmp(themsg.String,"SX")==0) sx=TRUE; else sx=FALSE;
+
+			UStats();
+
+			XIMFunction(2, 0, 0); 	/* function 2 = shutdown */
+		}
+	}
+}
+
+void PS(char * str)
+{
+	if(sx) XIMFunction(1500, (long)str, 0); else XIMFunction(4, 0, str);
+}
+
+void XIMFunction(int func, long data, char * str)
+{
+	struct MsgPort *replyport;
+
+	replyport = CreateMsgPort();
+	if(replyport)
+	{
+		themsg.Msg.mn_Length	= sizeof(struct JHMessage);
+		themsg.Msg.mn_ReplyPort	= replyport;
+		themsg.Data 		= data;
+		themsg.Command 		= func;
+		if(str && str[0]!=0) strcpy(themsg.String, str);
+		PutMsg(bbsport, (struct Message *)&themsg);
+		WaitPort(replyport);
+		DeleteMsgPort(replyport);
+	}
+}
+
+void UStats(void)
+{
+        char buf[256];
+        
+        PS("\033[2J");
+	PS("\033[34m-======================-[ \033[0;32;44mSXUserStatus 0.3beta\033[0m\033[34m ]-====================-\n\r");
+        PS("\033[34m-[ \033[33mcODE bY [r]fox\033[34m ]------------------------------------[\033[33m aND zEd^dC\033[34m ]-\n\r");
+        PS("\033[34m-====================================================================-\n\r");
+
+        XIMFunction(11,0,0);
+        sprintf(buf,"\033[36m      BBS Name :\033[31m %s\033[34m", themsg.String);
+        PS(buf);
+         
+      /*  XIMFunction(128,1,0); 
+        sprintf(buf,"\033[3;22H\033[36m BBS Location : \033[31m%s", themsg.String);
+        PS(buf);
+      */  
+       
+        XIMFunction(12,0,0);
+        sprintf(buf,"\033[4;40H\033[36mOP`s Name :\033[31m %s\n\r", themsg.String);
+        PS(buf);
+                       
+        XIMFunction(1503,0,0);
+        Uid = (struct UserIndexStruct *) themsg.Data;
+        sprintf(buf,"        \033[32mHandle : \033[33m%s\n\r", Uid -> handle);
+        PS(buf);
+        sprintf(buf,"      \033[32mRealName : \033[33m%s\n\r", Uid -> realname);
+        PS(buf);
+    
+        XIMFunction(102,1,0);
+        sprintf(buf,"  \033[32myer Location :\033[33m %s\n\r", themsg.String);
+        PS(buf);
+ 
+        XIMFunction(105,1,0);
+        sprintf(buf,"      \033[5;35H\033[32m     Axx Level :\033[33m %s\n\r", themsg.String);
+        PS(buf);
+      
+        XIMFunction(146,1,0);
+        sprintf(buf,"\033[6;35H\033[32mConference Axx :\033[33m %s\n\r", themsg.String);
+        PS(buf);
+      
+        XIMFunction(1502,0,0);
+        SXUser = (struct SXUserStruct *) themsg.Data;
+        PS("\033[7;35H\033[32m     Byteratio : \033[37m");
+        sprintf(buf,"%u", SXUser -> byteratio);
+        if(SXUser->byteratio != 0)    //wenn Byteratio NICHT 0, also ganz normal..
+         {
+           PS("1:");   // Byteratio 1: sowieso
+           PS(buf);
+                       // und die FreeBytes... 
+           sprintf(buf,"\033[14;5H\033[37mFree Bytes : \033[35m%u", SXUser -> freebytes);
+           PS(buf);  
+         
+         } else        //andernfalls...
+         {
+          PS("\033[35mdISABLEd !");
+          PS("\033[14;5H\033[33mFree Bytes : ");
+          PS("\033[14;18H\033[35mfREE LeECH !");
+         }
+        
+        PS("\033[8;35H\033[32m     Fileratio : \033[37m");
+        sprintf(buf,"%u", SXUser -> fileratio);
+        if(SXUser->fileratio != 0)
+         {
+          PS("1:"); 
+          PS(buf);
+                   // und die FREEFILES...
+          sprintf(buf,"\033[14;35H\033[37m    Free Files : \033[35m%u", SXUser -> freefiles);
+          PS(buf);
+         } else
+        {
+         PS("\033[35mdISABLEd !");
+         PS("\033[14;35H\033[33m    Free Files : ");
+         PS("\033[14;52H\033[35muNLIMITeD !");
+        }
+       
+        PS("\033[15;0H\033[34m---------------------------------------------------------------------\n\r");
+
+        XIMFunction(1501,0,0);
+        User = (struct UserData *) themsg.Data;
+        sprintf(buf,"\033[9;35H\033[32m  Bytes Upload : \033[33m%u", User -> Bytes_Upload);
+        PS(buf);
+        sprintf(buf,"\033[10;35H\033[32m  Files Upload : \033[33m%u", User -> Uploads);
+        PS(buf);
+        sprintf(buf,"\033[11;35H\033[32mBytes Download : \033[33m%u", User -> Bytes_Download);
+        PS(buf);
+        sprintf(buf,"\033[12;35H\033[32mFiles Download : \033[33m%u", User -> Downloads);
+        PS(buf);
+        sprintf(buf,"\033[9;0H\033[32m   Total Calls :\033[33m %u", User -> Times_Called);
+        PS(buf);
+ 
+        XIMFunction(143,0,0);
+        sprintf(buf,"\033[17;0H\033[32m        LastOn : \033[33m%s", themsg.String);
+        PS(buf);
+        sprintf(buf,"\033[10;0H\033[32m     Time Used : \033[33m%u \033[32mMins.", User -> Time_Used/60);
+        PS(buf);
+        sprintf(buf,"\033[11;0H\033[32m    Time Limit : \033[33m%u \033[32mMins.", User -> Time_Limit/60);
+        PS(buf);
+        sprintf(buf,"\033[12;0H\033[32m     Time Left : \033[33m%u \033[32mMins.", User -> Time_Left/60);
+        PS(buf);
+        sprintf(buf,"\033[8;0H\033[32m  yer Computer : \033[33m%s", SXUser -> computer);
+        PS(buf);
+        sprintf(buf,"\033[16;0H\033[32m   sENTbY Line : \033[33m%s", SXUser -> sentbyline);
+        PS(buf);
+   
+	PS("\033[13;0H\033[34m---------------------------------------------------------------------\n\r");
+
+        PS("\033[18;0H\033[34m-===================================================================-\n\r\n\r");
+}
